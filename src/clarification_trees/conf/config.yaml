@@ -1,0 +1,18 @@
+training:
+  epochs: 50
+  seed: 42
+  device: 'mps'
+  batch_size: 4
+
+dialog_tree:
+  max_depth: 2
+  question_expansion_factor: 2
+  answer_expansion_factor: 1
+
+defaults:
+  - clarification_model: qwen_3_vl_2b
+  - answer_model: qwen_3_vl_2b
+
+runtime_meta:
+  git_commit: null
+  git_strict: true

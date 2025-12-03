@@ -1,0 +1,4 @@
+model_name: qwen-3-vl-2b
+model_hf_transformers_key: Qwen/Qwen3-VL-2B-Instruct
+use_flash_attention: true
+max_new_tokens: 128
