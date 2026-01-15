@@ -4,6 +4,7 @@ from transformers import AutoProcessor
 from clarification_trees.models.model_interface import ModelInterface
 from pathlib import Path
 from omegaconf import DictConfig
+from typing import Optional
 
 from clarification_trees.dialog_tree import DialogTrajectory
 
@@ -11,7 +12,7 @@ class TransformersModel(ModelInterface):
     """
     Loads a model from the transformers library and provides a unified interface for tokenizing and generating text.
     """
-    def __init__(self, model_config: DictConfig, device: str, shared_model: Optional[TransformersModel] = None):
+    def __init__(self, model_config: DictConfig, device: str, shared_model: Optional['TransformersModel'] = None):
         self.model_config = model_config
         self.model_name = model_config.model_name
         self.device = device
@@ -40,10 +41,12 @@ class TransformersModel(ModelInterface):
             )
         self.processor = AutoProcessor.from_pretrained(model_config.model_hf_transformers_key)
     
-    def _load_model(self, model_config: DictConfig, shared_model: Optional[TransformersModel] = None):
+    def _load_model(self, model_config: DictConfig, shared_model: Optional['TransformersModel'] = None):
         if model_config.model_name == "qwen-3-vl-2b":
             self._load_qwen_vl_model(model_config)
         elif model_config.model_name == "qwen-3-vl-4b":
+            self._load_qwen_vl_model(model_config)
+        elif model_config.model_name == "qwen-3-vl-8b":
             self._load_qwen_vl_model(model_config)
         elif model_config.model_name == "shared_model":
             self.model = shared_model.model
@@ -87,8 +90,8 @@ if __name__ == "__main__":
     from pathlib import Path
     import os
 
-    config_path = Path(__file__).parent.parent.parent / "conf"
-    config_path = os.path.relpath(config_path, Path.cwd())
+    config_path = Path(__file__).parent.parent / "conf"
+    config_path = os.path.relpath(config_path, Path(__file__).parent)
 
     with initialize(version_base=None, config_path=config_path):
         cfg = compose(config_name="config")

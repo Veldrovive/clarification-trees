@@ -15,9 +15,11 @@ dependencies = [
     "wandb",
     "transformers",
     "torch",
+    "torchvision",
     "pillow",
     "requests",
     "tqdm",
+    "accelerate",
 ]
 
 [project.scripts]

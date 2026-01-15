@@ -1,7 +1,7 @@
 training:
   epochs: 50
   seed: 42
-  device: 'mps'
+  device: 'cuda:7'
   batch_size: 4
 
 dialog_tree:
@@ -10,7 +10,7 @@ dialog_tree:
   answer_expansion_factor: 1
 
 defaults:
-  - clarification_model: qwen_3_vl_2b
+  - clarification_model: qwen_3_vl_8b
   - answer_model: shared_hf_model
 
 runtime_meta:

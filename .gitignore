@@ -1,5 +1,8 @@
 data/
 
+# Computer specific rc file to set caches
+.projrc
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

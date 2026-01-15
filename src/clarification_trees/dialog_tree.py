@@ -24,7 +24,8 @@ class DialogNode:
 
         self.model_name_to_message_generator = {
             "qwen-3-vl-2b": self._to_qwen_message,
-            "qwen-3-vl-4b": self._to_qwen_message
+            "qwen-3-vl-4b": self._to_qwen_message,
+            "qwen-3-vl-8b": self._to_qwen_message
         }
 
     def _to_qwen_message(self):
