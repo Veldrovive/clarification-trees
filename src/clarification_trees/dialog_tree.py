@@ -1,6 +1,7 @@
 from enum import Enum
 from PIL import Image
 from typing import Optional, List
+from pathlib import Path
 
 class NodeType(Enum):
     ROOT = 0  # The initial question and paired image
@@ -22,7 +23,8 @@ class DialogNode:
         self.response = response
 
         self.model_name_to_message_generator = {
-            "qwen-3-vl-2b": self._to_qwen_message
+            "qwen-3-vl-2b": self._to_qwen_message,
+            "qwen-3-vl-4b": self._to_qwen_message
         }
 
     def _to_qwen_message(self):
@@ -44,7 +46,7 @@ class DialogNode:
     def to_string(self):
         string = f"{self.node_type_to_str[self.node_type]}: {self.response}"
         if self.image is not None:
-            string += f"(w/ Image: {self.image.filename})"
+            string += f" (w/ Image: {Path(self.image.filename).name})"
         return string
 
     def __repr__(self):

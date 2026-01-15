@@ -11,7 +11,7 @@ dialog_tree:
 
 defaults:
   - clarification_model: qwen_3_vl_2b
-  - answer_model: qwen_3_vl_2b
+  - answer_model: shared_hf_model
 
 runtime_meta:
   git_commit: null
